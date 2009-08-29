@@ -1,0 +1,22 @@
+DESCRIPTION
+----
+A Xcode template file for "cocos2d for iPhone". See http://code.google.com/p/cocos2d-iphone/ for more details about cocos2d for iPhone.
+
+
+HOW TO INSTALL
+----
++ Create a new directory and rename it as "cocos2d for iPhone template" or something like that (whatever you like).
++ Put everything on this repository into the directory you've created.
++ Move the directory to: ~/Library/Application Support/Developer/Shared/Xcode/Project Templates/Application/
+  If you don't have such directory path, just make it. 
+
+Note: Make sure there's no .git and .gitignore in your own project you would have created with this template. Xcode will copy them from the template to the new project and that may cause some problems (especially git-relating matters).
+
+
+SPECIAL THANKS
+----
+
+This template is just a modification of the template made by id:Seasons.
+http://d.hatena.ne.jp/Seasons/20090511/1241990196 (All Japanese)
+
+

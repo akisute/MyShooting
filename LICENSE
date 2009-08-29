@@ -1,0 +1,17 @@
+Everything under "Support" directory have different Licenses for each libraries, such as:
+- cocos2d
+- cocoslive
+- CocosDenshion
+- sound-engine
+- StreakMotion
+- Box2d
+- Chipmunk
+- TouchJSON
+- Tremor
+
+You must follow their own Licenses. For more detail information, see:
+http://www.cocos2d-iphone.org/wiki/doku.php/license
+
+
+
+Any other resources are all public domain. Feel free to use, modify, redistribute.
