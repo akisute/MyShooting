@@ -22,19 +22,17 @@
 
 + (Action *)moveByFrom:(CGPoint)from to:(CGPoint)to speed:(float)speed
 {
-    float dx = speed * (to.x - from.x) * ACTION_DURATION;
-    float dy = speed * (to.y - from.y) * ACTION_DURATION;
-    CGPoint targetPosition = ccp(dx, dy);
-    Action *action = [MoveBy actionWithDuration:ACTION_DURATION
-                                       position:targetPosition];
-    return action;
+    return [MSTGActionFactory moveByFrom:from
+                                      to:to
+                                  degree:0
+                                   speed:speed];
 }
 
 + (Action *)moveByFrom:(CGPoint)from to:(CGPoint)to degree:(float)degree speed:(float)speed
 {
-    float degreeTo = ccpToAngle(ccp(to.x - from.x, to.y - from.y));
+    float radianTo = ccpToAngle(ccp(to.x - from.x, to.y - from.y));
     return [MSTGActionFactory moveByFrom:from
-                                  degree:degreeTo + degree
+                                  degree:CC_RADIANS_TO_DEGREES(radianTo) + degree
                                    speed:speed];
 }
 

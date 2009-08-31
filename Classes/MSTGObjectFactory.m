@@ -15,7 +15,10 @@
 #pragma mark -
 #pragma mark MSTGCannon
 
-@interface MSTGCannon : MSTGObject
+@interface MSTGCannon : MSTGObject {
+    int fireFrames;
+    int fireInterval;
+}
 @end
 @implementation MSTGCannon
 
@@ -30,7 +33,8 @@
     self.damage = 1;
     self.owner = kMSTGObjectOwnerEnemy;
     
-    CCLOG(@"life = %d", self.life);
+    fireInterval = 20;
+    fireFrames = 0;
 }
 
 - (void)mainPhase:(ccTime)dt
@@ -39,19 +43,22 @@
     MSTGObject *player = gameSceneLayer.player;
     
     // Shoot bullets at player
-    MSTGObject *bullet = [MSTGObjectFactory bullet];
-    bullet.position = self.position;
-    Action *action = [MSTGActionFactory moveByFrom:bullet.position
-                                                to:player.position
-                                             speed:150];
-    [MSTGActionFactory moveByFrom:bullet.position
-                               to:player.position
-                           degree:5
-                            speed:150];
-    [bullet runAction:action];
-    [gameSceneLayer addChild:bullet];
+    if (fireFrames++ > fireInterval)
+    {
+        fireFrames = 0;
+        MSTGObject *bullet = [MSTGObjectFactory bullet];
+        bullet.position = self.position;
+        Action *action = [MSTGActionFactory moveByFrom:bullet.position
+                                                    to:player.position
+                                                 speed:150];
+        [bullet runAction:action];
+        [gameSceneLayer addChild:bullet];
+    }
+    //    [MSTGActionFactory moveByFrom:bullet.position
+    //                               to:player.position
+    //                           degree:5
+    //                            speed:150];
     
-    CCLOG(@"life = %d", self.life);
 }
 
 @end
@@ -74,7 +81,7 @@
 
 + (MSTGObject *)cannon
 {
-    MSTGObject *object = [MSTGObject spriteWithFile:@"cannon.png"];
+    MSTGObject *object = [MSTGCannon spriteWithFile:@"cannon.png"];
     return object;
 }
 
