@@ -33,8 +33,8 @@
     self.damage = 1;
     self.owner = kMSTGObjectOwnerEnemy;
     
-    fireInterval = 20;
-    fireFrames = 0;
+    fireInterval = 60;
+    fireFrames = fireInterval - 5;
 }
 
 - (void)mainPhase:(ccTime)dt
@@ -42,23 +42,36 @@
     GameSceneLayer *gameSceneLayer = self.gameSceneLayer;
     MSTGObject *player = gameSceneLayer.player;
     
-    // Shoot bullets at player
+    // Shoot 3 bullets at player
     if (fireFrames++ > fireInterval)
     {
         fireFrames = 0;
-        MSTGObject *bullet = [MSTGObjectFactory bullet];
-        bullet.position = self.position;
-        Action *action = [MSTGActionFactory moveByFrom:bullet.position
+        MSTGObject *bullet1 = [MSTGObjectFactory bullet];
+        bullet1.position = self.position;
+        Action *action1 = [MSTGActionFactory moveByFrom:bullet1.position
                                                     to:player.position
-                                                 speed:150];
-        [bullet runAction:action];
-        [gameSceneLayer addChild:bullet];
+                                                 speed:100];
+        [bullet1 runAction:action1];
+        [gameSceneLayer addChild:bullet1];
+        
+        MSTGObject *bullet2 = [MSTGObjectFactory bullet];
+        bullet2.position = self.position;
+        Action *action2 = [MSTGActionFactory moveByFrom:bullet2.position
+                                                    to:player.position
+                                                degree:5
+                                                 speed:100];
+        [bullet2 runAction:action2];
+        [gameSceneLayer addChild:bullet2];
+        
+        MSTGObject *bullet3 = [MSTGObjectFactory bullet];
+        bullet3.position = self.position;
+        Action *action3 = [MSTGActionFactory moveByFrom:bullet3.position
+                                                    to:player.position
+                                                degree:-5
+                                                 speed:100];
+        [bullet3 runAction:action3];
+        [gameSceneLayer addChild:bullet3];
     }
-    //    [MSTGActionFactory moveByFrom:bullet.position
-    //                               to:player.position
-    //                           degree:5
-    //                            speed:150];
-    
 }
 
 @end
